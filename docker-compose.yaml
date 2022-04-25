@@ -1,0 +1,30 @@
+version: '3.6'
+
+services:
+  web:
+    image: josefjebavy/debian-apache-php8.0-nette
+    container_name: docker-php8
+    working_dir: /var/www/html
+    environment:
+      - NETTE_DEBUG=1
+    volumes:
+    - .:/var/www/html
+    ports:
+    - 8081:80
+    - 8082:443
+  db:
+    image: mariadb:10.6.0
+    restart: always
+    environment:
+      MYSQL_USER: lucka
+      MYSQL_PASSWORD: lucka
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test_db
+    ports:
+      - "3307:3306"
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080

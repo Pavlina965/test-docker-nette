@@ -1,0 +1,17 @@
+{block content}
+	<h1 n:block="title">Můj blog</h1>
+
+	{foreach $posts as $post}
+	<div style= "border: #000000 solid 1px" class="post">
+	<h2><a n:href="clanek:default"  </h2>
+	    <h2>{$post->title}</h2>
+		<div class="date">{$post->created_at|date:'F j, Y'}</div>
+		<div>{$post->content}</div>
+	<h2><a n:href="clanek:default $post->id">zobrazit příspěvek</a></h2>
+	</div>
+<br>
+	{/foreach}
+	<a n:href="clanek:create">vytvořit nový článek</a>
+
+{/block}
+
